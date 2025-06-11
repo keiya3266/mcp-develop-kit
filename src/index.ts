@@ -17,15 +17,6 @@ interface ToolSchema {
   };
 }
 
-interface FileSystemTool {
-  name: string;
-  description: string;
-  inputSchema: {
-    type: string;
-    properties: Record<string, unknown>;
-    required: string[];
-  };
-}
 
 class SampleToolsServer {
   private server: Server;
@@ -184,7 +175,7 @@ class SampleToolsServer {
           },
         ],
       };
-    } catch (error) {
+    } catch {
       throw new Error(`Invalid mathematical expression: ${expression}`);
     }
   }

@@ -1,26 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 
-// Mock the stdio transport since we can't easily test it in unit tests
-class MockTransport {
-  async start() {
-    return Promise.resolve();
-  }
-  
-  async close() {
-    return Promise.resolve();
-  }
-  
-  onmessage: ((message: any) => void) | null = null;
-  onerror: ((error: Error) => void) | null = null;
-  onclose: (() => void) | null = null;
-  
-  send(message: any) {
-    // Mock implementation
-    return Promise.resolve();
-  }
-}
-
 // We'll test the tool logic by creating a simplified version
 class ToolTester {
   async calculate(expression: string): Promise<string> {
@@ -36,7 +16,7 @@ class ToolTester {
     try {
       const result = Function(`"use strict"; return (${sanitizedExpression})`)();
       return `${expression} = ${result}`;
-    } catch (error) {
+    } catch {
       throw new Error(`Invalid mathematical expression: ${expression}`);
     }
   }
