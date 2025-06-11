@@ -1,2 +1,115 @@
-# mcp-develop-kit
-mcp作成のブースターパック
+# Sample Tools MCP Server
+
+@modelcontextprotocol/sdkを使用したサンプルのMCPサーバーです。基本的なツール群を提供し、MCPの動作を理解するためのリファレンス実装として機能します。
+
+## 提供されるツール
+
+### 1. calculate
+数学的な計算を実行します。
+
+- **説明**: 基本的な数学演算（+, -, *, /, 括弧）をサポート
+- **入力**: `expression` (string) - 計算式
+- **例**: `"2 + 3 * 4"` → `"2 + 3 * 4 = 14"`
+
+### 2. generate_uuid
+ランダムなUUIDを生成します。
+
+- **説明**: UUID version 4を生成
+- **入力**: `version` (number, optional) - UUIDバージョン（デフォルト: 4）
+- **例**: → `"550e8400-e29b-41d4-a716-446655440000"`
+
+### 3. reverse_string
+文字列を逆順にします。
+
+- **説明**: 入力された文字列を文字単位で逆順に変換
+- **入力**: `text` (string) - 逆順にする文字列
+- **例**: `"hello"` → `"olleh"`
+
+### 4. current_time
+現在の日時を取得します。
+
+- **説明**: 複数のフォーマットで現在時刻を取得
+- **入力**: `format` (string, optional) - フォーマット（"iso", "unix", "readable"）
+- **例**: 
+  - `"iso"` → `"2024-01-01T12:00:00.000Z"`
+  - `"unix"` → `"1704110400"`
+  - `"readable"` → `"1/1/2024, 12:00:00 PM"`
+
+## セットアップ
+
+```bash
+# 依存関係のインストール
+npm install
+
+# ビルド
+npm run build
+
+# 開発モード（TypeScriptを直接実行）
+npm run dev
+
+# 本番実行
+npm start
+```
+
+## テスト
+
+```bash
+# テスト実行
+npm test
+
+# ウォッチモードでテスト
+npm run test:watch
+
+# 型チェック
+npm run typecheck
+
+# リント
+npm run lint
+```
+
+## 使用方法
+
+このMCPサーバーは、MCP（Model Context Protocol）クライアントから使用されることを想定しています。サーバーは標準入出力（stdio）を通じて通信を行います。
+
+### Claude Desktop での使用例
+
+Claude Desktop の設定に以下を追加：
+
+```json
+{
+  "mcpServers": {
+    "sample-tools": {
+      "command": "node",
+      "args": ["/path/to/mcp-develop-kit/dist/index.js"]
+    }
+  }
+}
+```
+
+## アーキテクチャ
+
+- **メインクラス**: `SampleToolsServer` - MCPサーバーのコア機能を実装
+- **通信**: `StdioServerTransport` - 標準入出力を使用した通信
+- **エラーハンドリング**: 各ツールで適切なエラーハンドリングを実装
+- **セキュリティ**: 計算式のサニタイズなど、基本的なセキュリティ対策を実装
+
+## 技術スタック
+
+- **TypeScript**: 型安全性を確保
+- **@modelcontextprotocol/sdk**: MCP SDKを使用
+- **Vitest**: テストフレームワーク
+- **ESLint**: コード品質の維持
+
+## 開発
+
+新しいツールを追加する場合：
+
+1. `getAvailableTools()` メソッドにツール定義を追加
+2. `setupToolHandlers()` メソッドにハンドラーを追加
+3. 対応するハンドラーメソッドを実装
+4. テストを作成
+
+コード規約：
+- TypeScriptの厳密な型チェックを使用
+- すべての関数に適切なエラーハンドリングを実装
+- セキュリティを考慮した実装（入力値のサニタイズなど）
