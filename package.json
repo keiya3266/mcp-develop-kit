@@ -1,5 +1,5 @@
 {
-  "name": "@k-takagi/sample-tools-mcp",
+  "name": "@keiya3266/sample-tools-mcp",
   "version": "1.0.0",
   "description": "Sample MCP Server with various tools",
   "type": "module",
@@ -34,7 +34,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/k-takagi/mcp-develop-kit.git"
+    "url": "https://github.com/keiya3266/mcp-develop-kit.git"
   },
   "keywords": [
     "mcp",
@@ -48,5 +48,8 @@
     "dist/",
     "README.md",
     "CLAUDE.md"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
 }
