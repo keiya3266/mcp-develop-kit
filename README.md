@@ -1,6 +1,6 @@
-# Sample Tools MCP Server
+# @k-takagi/sample-tools-mcp
 
-@modelcontextprotocol/sdkを使用したサンプルのMCPサーバーです。基本的なツール群を提供し、MCPの動作を理解するためのリファレンス実装として機能します。
+@modelcontextprotocol/sdkを使用したプライベートMCPサーバーです。基本的なツール群を提供し、MCPの動作を理解するためのリファレンス実装として機能します。
 
 ## 提供されるツール
 
@@ -35,7 +35,16 @@
   - `"unix"` → `"1704110400"`
   - `"readable"` → `"1/1/2024, 12:00:00 PM"`
 
-## セットアップ
+## インストール・使用方法
+
+### NPMからの使用（プライベートパッケージ）
+
+```bash
+# NPMプライベートパッケージとして公開後
+npx -y @k-takagi/sample-tools-mcp
+```
+
+### ローカル開発
 
 ```bash
 # 依存関係のインストール
@@ -75,6 +84,19 @@ npm run lint
 
 Claude Desktop の設定に以下を追加：
 
+#### NPMパッケージ使用（推奨）
+```json
+{
+  "mcpServers": {
+    "sample-tools": {
+      "command": "npx",
+      "args": ["-y", "@k-takagi/sample-tools-mcp"]
+    }
+  }
+}
+```
+
+#### ローカルファイル使用
 ```json
 {
   "mcpServers": {

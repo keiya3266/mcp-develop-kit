@@ -1,11 +1,12 @@
 {
-  "name": "sample-tools-mcp",
+  "name": "@k-takagi/sample-tools-mcp",
   "version": "1.0.0",
   "description": "Sample MCP Server with various tools",
   "type": "module",
   "main": "dist/index.js",
+  "bin": "./dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && chmod +x dist/index.js",
     "dev": "tsx src/index.ts",
     "start": "node dist/index.js",
     "test": "vitest",
@@ -28,5 +29,24 @@
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "author": "k-takagi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k-takagi/mcp-develop-kit.git"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "tools",
+    "calculate",
+    "uuid",
+    "string-utils"
+  ],
+  "files": [
+    "dist/",
+    "README.md",
+    "CLAUDE.md"
+  ]
 }
