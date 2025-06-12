@@ -1,6 +1,6 @@
-# @k-takagi/sample-tools-mcp
+# @keiya3266/sample-tools-mcp
 
-@modelcontextprotocol/sdkを使用したプライベートMCPサーバーです。基本的なツール群を提供し、MCPの動作を理解するためのリファレンス実装として機能します。
+@modelcontextprotocol/sdkを使用したプライベートMCPサーバーです。GitHub Package Registryで配布され、npxで直接実行可能です。基本的なツール群を提供し、MCPの動作を理解するためのリファレンス実装として機能します。
 
 ## 提供されるツール
 
@@ -37,12 +37,27 @@
 
 ## インストール・使用方法
 
-### NPMからの使用（プライベートパッケージ）
+### GitHub Package Registryからの使用（プライベートパッケージ）
 
-```bash
-# NPMプライベートパッケージとして公開後
-npx -y @k-takagi/sample-tools-mcp
-```
+#### 前提条件
+このパッケージはGitHub Package Registryに公開されているため、使用するには認証設定が必要です。
+
+1. **Personal Access Tokenの作成**
+   - GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
+   - `read:packages`権限を含むトークンを作成
+
+2. **認証設定**
+   ```bash
+   # グローバル.npmrcに認証情報を追加
+   echo "@keiya3266:registry=https://npm.pkg.github.com/" >> ~/.npmrc
+   echo "//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN" >> ~/.npmrc
+   ```
+
+3. **使用**
+   ```bash
+   # 認証設定後、直接実行可能（動作確認済み）
+   npx -y @keiya3266/sample-tools-mcp
+   ```
 
 ### ローカル開発
 
@@ -84,17 +99,21 @@ npm run lint
 
 Claude Desktop の設定に以下を追加：
 
-#### NPMパッケージ使用（推奨）
+#### GitHub Package Registry使用（推奨・動作確認済み）
 ```json
 {
   "mcpServers": {
     "sample-tools": {
       "command": "npx",
-      "args": ["-y", "@k-takagi/sample-tools-mcp"]
+      "args": ["-y", "@keiya3266/sample-tools-mcp"]
     }
   }
 }
 ```
+
+**注意**: この設定を使用する前に、上記の認証設定を完了してください。
+
+**動作確認**: `npx -y @keiya3266/sample-tools-mcp`で正常に起動することを確認済みです。
 
 #### ローカルファイル使用
 ```json

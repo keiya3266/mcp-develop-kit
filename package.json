@@ -4,7 +4,9 @@
   "description": "Sample MCP Server with various tools",
   "type": "module",
   "main": "dist/index.js",
-  "bin": "./dist/index.js",
+  "bin": {
+    "sample-tools-mcp": "./dist/index.js"
+  },
   "scripts": {
     "build": "tsc && chmod +x dist/index.js",
     "dev": "tsx src/index.ts",
@@ -34,7 +36,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/keiya3266/mcp-develop-kit.git"
+    "url": "git+https://github.com/keiya3266/mcp-develop-kit.git"
   },
   "keywords": [
     "mcp",
@@ -49,6 +51,13 @@
     "README.md",
     "CLAUDE.md"
   ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   }

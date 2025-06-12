@@ -1,7 +1,7 @@
 # CLAUDE.md
 
 ## プロジェクト概要
-@modelcontextprotocol/sdkを使用したサンプルMCPサーバーの実装です。基本的なツール群を提供し、MCPの動作を理解するためのリファレンス実装として機能します。
+@modelcontextprotocol/sdkを使用したプライベートMCPサーバーの実装です。GitHub Package Registryで配布され、npxで直接実行可能です。基本的なツール群を提供し、MCPの動作を理解するためのリファレンス実装として機能します。
 
 ## 主要コマンド
 
@@ -50,7 +50,26 @@ src/
 
 ## 使用方法
 
+### GitHub Package Registry経由（推奨・動作確認済み）
+
 Claude DesktopなどのMCPクライアントで使用するには、設定ファイルに以下を追加：
+
+```json
+{
+  "mcpServers": {
+    "sample-tools": {
+      "command": "npx",
+      "args": ["-y", "@keiya3266/sample-tools-mcp"]
+    }
+  }
+}
+```
+
+**前提条件**: GitHubの認証設定が必要です。詳細はREADME.mdを参照してください。
+
+**動作確認**: npxでの直接実行が正常に動作することを確認済みです。
+
+### ローカル開発
 
 ```json
 {
